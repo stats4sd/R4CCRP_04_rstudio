@@ -1,36 +1,31 @@
----
-title: "Module 3 - Solutions"
-author: "Sam Dumble - Research Methods Support"
-date: "09/02/2021"
-output: word_document
----
 
-```{r setup, include=FALSE}
+
+## ggplot part 2 - Solutions
+
+Make sure ggplot2 library is installed and then loaded correctly!
+
+Hopefully you have saved the data and RMD into the same folder, and created a project file for that folder. If so then the BeanSurvey dataset can be read in without modifying the code below.
+
+```{r}
 
 library(ggplot2)
-library(dplyr)
-library(knitr)
-
-
 BeanSurvey<-read.csv("bean_survey.csv")
-
 
 ```
 
-
-## Solutions
 
 
 **Question 1: I am trying to make a histogram of the farmer's ages with different panels for each village. Can you identify and fix the errors in my code?**
-```
+
 
 ggplot(BeanSurvey,aes(x=AGEHH))+
   geom_hist(binwidth =5)+
     facet_wrap(VILLAGE)
 
-```
 
-Remember to try to find the errors by running the code and checking the messages. It can be very difficult to just magically spot the error by starting at the code without some hlp from the error message!
+** Answer
+
+Remember to try to find the errors by running the code and checking the messages. It can be very difficult to just magically spot the error by starting at the code without some help from the error message!
 
 There were two mistakes:
 Firstly the correct geometry should be `geom_histogram()` rather than `geom_hist()`. The autocomplete within the code window could help you with this.
@@ -45,23 +40,19 @@ ggplot(BeanSurvey,aes(x=AGEHH))+
 
 
 
-**Question 2a: I am making a barplot of decision making, by gender of the household head. Can you modify the code, so that it looks like the example below with female headed households coloured in 'purple' and male headed households coloured in 'orange'**
+**Question 2a: I am making a barplot of decision making, by gender of the household head. Can you modify the code, so that it looks like the example in the workbook with female headed households coloured in 'purple' and male headed households coloured in 'orange'**
 
-```{r, echo=FALSE}
+```{r}
 
-ggplot(BeanSurvey,aes(y=DECISIONS,fill=GENDERHH))+
-  geom_bar()+
-    scale_fill_manual(values=c("purple","orange"))
-
-```
-
-```
 ggplot(BeanSurvey,aes(y=DECISIONS))+
   geom_bar()
 
 ```
 
-To get the required plot we need to make two modifications. Firstly we need to set the `fill` aesthetic to be based on the `GENDERHH` column from the data. The bars have two sorts of colour we can modify - `fill` for the inner region and `colour` for the outline. If we changed `colour` this would still have the bars shaded in grey but with red and blue outlines. This is not what we want! We want the shading colour, the `fill` to be modified. And ebcause we are varying the colour based on a column from the data we set it in the aesethetics not in the geometry.
+
+** Answer
+
+To get the required plot we need to make two modifications. Firstly we need to set the `fill` aesthetic to be based on the `GENDERHH` column from the data. The bars have two sorts of colour we can modify - `fill` for the inner region and `colour` for the outline. If we changed `colour` this would still have the bars shaded in grey but with red and blue outlines. This is not what we want! We want the shading colour, the `fill` to be modified. And because we are varying the colour based on a column from the data we set it in the aesethetics not in the geometry.
 
 To use the purple and orange colours we need to modify the fill aesthetic using the correct `scale_` function. Because we are chaning the `fill` aesthetic manually then the function we need to add is `scale_fill_manual`. Inside this function we have two colours that we need specify to the `values` argument because there are two values for `GENDERHH`, so we need to use the `c()` function to bring these colours together.
 
@@ -77,6 +68,8 @@ ggplot(BeanSurvey,aes(y=DECISIONS,fill=GENDERHH))+
 
 
 **Question 2b: Taking the plot you created in Question 2a, now make some changes to the labels: i) remove the y axis label; ii) Change the x axis label to read "Number of Farmers"; iii) Add an informative title**
+
+** Answer
 
 I can modify the y axis label so that it is blank "" rather than "remove" it - this is an easier way to achieve the same thing! So all three of my steps can be done in the same function - `labs()` and calling the `y`, `x` and `title` labels.
 
@@ -94,6 +87,8 @@ ggplot(BeanSurvey,aes(y=DECISIONS,fill=GENDERHH))+
 
 **Question 3: Make a scatter plot of the harvested quantities of beans in the long rains against the planted quantity of beans in the long rains. Place the harvested quantity on the y axis, and the planted quantity on the x axis.**
 
+** Answer
+
 Here I need to identify the correct columns from the data set and then use the point geometry to make the scatter plot
 
 ```{r}
@@ -105,6 +100,8 @@ ggplot(BeanSurvey , aes(y=BEANSHARVESTED_LR,x=BEANSPLANTED_LR)) +
 **Now consider how to also show how the different villages are associated with this this relationship. 
 Try two different options:
 a) Make different coloured points for each village**
+
+** Answer
 
 The key thing here is to understand that for the default plotting symbol of `geom_point` the way to modify the colour is through `colour` rather than `fill`. So differently to the barchart from Q2, this time I need to map the `colour` aesthetic to the `VILLAGE` column.
 
@@ -119,6 +116,8 @@ ggplot(BeanSurvey , aes(y=BEANSHARVESTED_LR,x=BEANSPLANTED_LR,colour=VILLAGE)) +
 
 **b) Put the two villages in different panels**
 
+** Answer
+
 ```{r}
 ggplot(BeanSurvey , aes(y=BEANSHARVESTED_LR,x=BEANSPLANTED_LR)) +
  geom_point() +
@@ -131,6 +130,8 @@ Remember to use the tilde `~` before the `VILLAGE` when making the facet
 
 
 **Consider which of these two plots shows the relationship more clearly. Take your preferred plot, and tidy up the axis labels and titles.**
+
+** Answer
 
 There are pros and cons to both plots (and lots of further ways to modify the plots as I talked about during the webinar).
 The 'right' plot here depends one exactly what we want to highlight - the facets show the within village patterns much more clearly, but make it harder to compare between villages. The colours allow you to compare the villages more easily, but make seeing the results within each village more difficult. 
@@ -150,6 +151,7 @@ ggplot(BeanSurvey , aes(y=BEANSHARVESTED_LR,x=BEANSPLANTED_LR,colour=VILLAGE)) +
 
 **Question 4a: Make a plot showing how the quantity of beans harvested in the long rains is related to the household type (`HHTYPE`). Choose a sensible geometry to show this relationship.**
 
+** Answer
 
 When considering what sort of plot to make we should always consider what type of variable we have. In this case we have a continuous numeric variable  `BEANSHARVESTED_LR` and a categorical variable `HHTYPE`. A common plot to make here might be a boxplot. However - this would actually be very misleading because of the way the data is distributed. There are very few observations of households in certain 'types' - just two single men and just one 'other'. Because the boxplots provide a summary of the values in each group then we need to have enough observations so that we can form a reasonable and meaningful summary. When you have only a few observations per group probably the better option would be to use a point geometry.
 
@@ -164,6 +166,9 @@ geom_jitter(width=0.1)
 ```
 
 **Question 4b: Whatever plot you decided on for question 4a, you may have found that because the labels for the `HHTYPE` variable are quite long, the text along the axis became squashed. Look into the elements which can be customised within `theme` and try to make these labels fit better by decreasing the font size or modifying the angle at which the labels are aligned to the axis**
+
+** Answer
+
 ```{r}
 ggplot(BeanSurvey , aes(y=BEANSHARVESTED_LR,x=HHTYPE))+
 geom_jitter(width=0.1)+
@@ -175,6 +180,8 @@ In the `theme` function we can find the component we want to modify, the axis te
 
 
 **Question 5: Make a plot showing the relationship between the gender of the household head (`GENDERHH`), village, (`VILLAGE`) and whether the household sells any of their beans (`SELLBEANS`). Include nice colours, sensible axis labels, a title, and use one of the custom built-in themes to make the plot look nice. Also consider increasing the font size for some of the labels so they can be read more clearly.**
+
+** Answer
 
 There are lots of ways you could have chosen to make a plot here! The way I went about it is just one option.
 

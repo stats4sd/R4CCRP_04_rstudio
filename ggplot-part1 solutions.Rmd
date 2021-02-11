@@ -1,35 +1,28 @@
----
-title: "Module 2 - Solutions"
-author: "Sam Dumble - Research Methods Support"
-date: "01/02/2021"
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
----
 
-```{r setup, include=FALSE,message=FALSE,echo=FALSE}
 
-library(tidyverse)
-library(knitr)
+## ggplot part 1 - Solutions
 
+Make sure ggplot2 library is installed and then loaded correctly!
+
+Hopefully you have saved the data and RMD into the same folder, and created a project file for that folder. If so then the BeanSurvey dataset can be read in without modifying the code below.
+
+```{r}
+
+library(ggplot2)
 BeanSurvey<-read.csv("bean_survey.csv")
 
 ```
 
-## Solutions
 
-All of the exercises are using the `BeanSurvey` data we have been working with so far - remember you can also go back to look at the description of the data and the variables.
 
 **Exercise 1. Replace each of the instances of "ZZZ" from the code below to produce a bar chart showing the frequencies of the household head gender variable `GENDERHH`**
 
 
-```
-
 ggplot(data=ZZZ, aes(x=ZZZ)) + 
   geom_ZZZ()
 
-```
+
+** Answer
 
 ```{r}
 
@@ -46,10 +39,12 @@ We also need to set the correct geom_ - in this case to show a bar chart of freq
 
 **Exercise 2. Identify and fix the error(s) in this code to produce a boxplot of age of household head by village**
 
-```
+
 ggplot2(data = BEANSURVEY,  aes(x = AgeHH, y = Village) 
   geom_box()
-```
+
+
+** Answer
 
 ```{r}
 ggplot(data = BeanSurvey,  aes(x = AGEHH, y = VILLAGE)) +
@@ -66,6 +61,8 @@ There are lots of errors!:
 
 
 **Exercise 3. Produce a histogram of land area. Set the bins so that each bin covers a range of 1 acre**
+
+** Answer
 
 We first need to convert the question into the different ggplot elements:
 data-> BeanSurvey
@@ -88,6 +85,8 @@ ggplot(data=BeanSurvey,aes(x=LANDAREA))+
 
 
 **Exercise 4. Make a scatter plot showing the number of adults on the x axis against the number of children on the y axis. Can you see any limitations to this plot?**
+
+** Answer 
 
 data-> BeanSurvey
 aesthetics->x->CHILDREN

@@ -82,7 +82,7 @@ I'd suggest watching this back-to-back with the next video in the sequence, whic
 <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-working-in-rstudio" target="_blank">Working in RStudio</a>
 
 
-Rather than creating a new file from scratch right now, you can download the solutions from Module 1 as a workbook [here](https://github.com/stats4sd/R4CCRP_04_rstudio/raw/main/intro-module-solutions.zip). 
+Rather than creating a new file from scratch right now, you can download the solutions from the intro module as a workbook [here](https://github.com/stats4sd/R4CCRP_04_rstudio/raw/main/intro-module-solutions.zip). 
 
 And if you then open this up in RStudio (Using the menu system: File->Open File) you can get an idea of how the interface works. 
 
@@ -117,7 +117,7 @@ knitr::include_graphics("images/objects in environment.JPG")
 
 ## Working with projects
 
-You can download the solutions for Module 2 in RMD format, and the data file used, in CSV format [here](https://github.com/stats4sd/r2020_04Rstudio/raw/main/Module-2-Solutions.zip)
+You can download the solutions for the ggplot part 1 module in RMD format, and the data file used, in CSV format [here](https://github.com/stats4sd/R4CCRP_04_rstudio/raw/main/ggplot-part1-solutions.zip)
 
 This is a good opportunity to learn about working with project files, importing data, and installing and loading packages.
 
@@ -131,6 +131,7 @@ As the file pane should now be showing you the folder where you extracted the mo
 
 ## Installing Packages
 
+### Automatically through the 'install' prompt at the top of the file
 When you do this you will probably see a prompt at the top of the RMD window telling you that the ggplot2 package is used in this script, but has not been installed. 
 
 ```{r echo=FALSE, out.width="70%", fig.align='center'}
@@ -142,6 +143,35 @@ You will see this message when your file contains a call to `library()` but the 
 
 To install ggplot2 you can then click on the install button at the top of your page and this will then connect to the CRAN repository to download it. Check the final message which appears. If you see something which ends with 'success' then the package has installed correctly! If you see an error message after trying to install a package then you have run into an issue. Don't be afraid to ask for help if you come across issues in this process for package installation at first, as there can sometimes be firewall, or other compatibility issues, which can be resolved with a bit of technical support.
 
+### Manually from the bottom right pane
+
+It might also happen for some reason that you don't see the yellow message at the top of the RMD window - maybe you closed it or clicked the *Don't show again* button. In that case, try running the library commands. Who knows, maybe the package is already installed. If it is not, you will see the following type of error:
+
+> Error in library(ggplot2) : there is no package called ‘ggplot2’
+
+The simplest is then to install the package manually by:
+
+- clicking the `Packages` tab in the bottom right pane.
+
+```{r echo=FALSE, out.width="90%", fig.align='center'}
+knitr::include_graphics("images/packges tab.JPG")
+```
+
+- clicking the `Install` button.
+
+```{r echo=FALSE, out.width="70%", fig.align='center'}
+knitr::include_graphics("images/install button.JPG")
+```
+
+- typing the name of the package in the 'Packages' field, and press **Install**
+
+```{r echo=FALSE, out.width="90%", fig.align='center'}
+knitr::include_graphics("images/install window.JPG")
+```
+
+You then wait a little and if, as said just above, you see something which ends with 'success' then the package has installed correctly. If instead you see some error, that's time to look for help!
+
+
 You can watch the video about installing and loading packages here:
 <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-installing-and-loading-packages" target="_blank">Installing and loading packages</a>
 
@@ -150,8 +180,8 @@ You can watch the video about installing and loading packages here:
 The video introduction for writing R scripts can be found here:
 <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-r-markdown" target="_blank">R Markdown</a>
 
-If you have set the project file, and installed ggplot you should now be able to go through the solutions file and run each of the chunks of code to see the 'solved' answers.
-Make sure you work through sequentially. Loading the packages and the data first, otherwise the later steps will not run. You can see from the first chunk a new function `read.csv` being used to read the data file in. We will learn more about reading in data in the second part of this module, but for now you can trust that, as long as you set up your project correctly, this line will read in the datafile and store it in R as an object called Pulse. When you run this line you should see it appear in your environment pane.
+If you have set the project file, and installed ggplot2 you should now be able to go through the solutions file and run each of the chunks of code to see the 'solved' answers.
+Make sure you work through sequentially. Loading the packages and the data first, otherwise the later steps will not run. You can see from the first chunk a new function `read.csv` being used to read the data file in. We will learn more about reading in data in the second part of this module, but for now you can trust that, as long as you set up your project correctly, this line will read in the datafile and store it in R as an object called BeanSurvey. When you run this line you should see it appear in your environment pane.
 
 
 And if you click on it within that environment pane, it will open a (non-editable) spreadsheet like interface to view the data.
@@ -181,7 +211,7 @@ knitr::include_graphics("images/knit.JPG")
 And the first time you do this you will probably be asked to install some libraries within R. Try it now using either of the solutions RMD files that you have downloaded, and should still have open in RStudio.
 
 
-There are a lot of ways to improve on the default appearance of your output, but going in detail to this is a little beyond the scope the course. There are some guides in the resources section of the workbook which may help you if you are interested in learning more.
+There are a lot of ways to improve on the default appearance of your output, but going in detail to this is a little beyond the scope of the course. There are some guides in the resources section of the workbook which may help you if you are interested in learning more.
 
 
 You may see online people using the .R format script file, instead of the .RMD format markdown file. This is an older format for writing R scripts which does not contain any of the interactive features or the ability to write and format text outside of R commands. When writing your own files we strongly recommend using the RMD format. The RMD file is specific to RStudio - so if you do ever come across a strange person who uses R but not RStudio (they do exist, but are something of an endangered species!) they might prefer to use the .R script file instead of the .RMD markdown file. When you become more of an experienced R user, you may also find .R script files useful when you are writing code to create functions or applications, rather than writing code for working with your own data.
