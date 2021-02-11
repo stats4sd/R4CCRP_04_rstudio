@@ -82,7 +82,7 @@ I'd suggest watching this back-to-back with the next video in the sequence, whic
 <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-working-in-rstudio" target="_blank">Working in RStudio</a>
 
 
-Rather than creating a new file from scratch right now, you can download the solutions from Module 1 as a workbook [here](https://github.com/stats4sd/r2020_04Rstudio/raw/main/Module-1-Solutions.zip). 
+Rather than creating a new file from scratch right now, you can download the solutions from Module 1 as a workbook [here](https://github.com/stats4sd/R4CCRP_04_rstudio/raw/main/intro-module-solutions.zip). 
 
 And if you then open this up in RStudio (Using the menu system: File->Open File) you can get an idea of how the interface works. 
 

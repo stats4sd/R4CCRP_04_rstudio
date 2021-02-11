@@ -1,0 +1,149 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+## Module 1:  Exercises
+
+### Question 1:
+I am trying to use R as a calculator, and am receiving an error. Can you spot my error and update the code?
+
+
+(42-5/(88+6)
+
+
+
+### Answer 1:
+
+My brackets are incorrectly specified as I open two sets of brackets but only close one.
+The correct solution is probably either `(42-5)/(88+6)` or `42-(5/(88+6))`, depending on what I actually wanted to do
+The former is probably more likely!
+
+```{r}
+(42-5)/(88+6)
+```
+
+
+### Question 2
+
+This question will use the same earthquakes dataset from the quiz, showing the magnitude of earthquakes occuring in the ocean around Fiji since 1964, as well as the number of different stations reporting the earthquake. This has been loaded into the R sessions as a data frame called `quakes` 
+
+### Question 2a
+Write a command to determine the largest magnitude (`mag`) earthquake recorded?
+
+
+### Answer 2a
+
+I would need to use the `max` command, and then specify that i want to use the `mag` column within the `quakes` dataset by using the data frame name `quakes` followed by a `$` follwed by the column name `mag`
+
+```{r}
+max(quakes$mag)
+
+```
+
+### Question 2b
+Write a command to determine the smallest depth (`depth`) below surface that an earthquake was recorded?
+
+### Answer 2b
+
+I would need to use the `min` command, and then specify that i want to use the `depth` column within the `quakes` dataset by using the data frame name `quakes` followed by a `$` follwed by the column name `depth`
+
+```{r}
+min(quakes$mag)
+```
+
+
+### Question 2c
+I would like to obtain the standard deviation of the earthquake magnitude column from the `quakes` dataset. See if you can find the function for standard deviation in R (we have not mentioned it in the course workbook so far) and then apply it to the relevant column
+
+### Answer 2c
+
+From a bit of searching, hopefully you found the `sd` function. This works in the same way as we have seen with `max` and `min`
+```{r}
+sd(quakes$mag)
+```
+
+
+
+### Question 3
+I am again using the `airquality` data and I am now interested in looking at the `Solar.R` variable. I know that there can sometimes be very extreme outlying values for this variable, so rather than looking at the minimum and maximum I would instead like to look at the 5th percentile and the 95th percentile. Find these two values using the `quantile` function.
+
+
+### Answer 3
+
+There are a few tricks to notice here - firstly when you look at the Solar.R variable, make sure you notice that there are missing values
+```{r}
+airquality$Solar.R
+```
+
+So when we use the quantile function we obtain an error
+```{r,error=TRUE}
+quantile(airquality$Solar.R)
+```
+So we need to use the option `na.rm=TRUE`
+
+```{r}
+quantile(airquality$Solar.R,na.rm=T)
+```
+
+The default output is also not what we want - the question is asking for the 5th percentile and the 95th percentile. we need to use the probs option to set the quantile. we could write this once for each percentile like this. Note that we need to specifiy the percentage as a decimal - i.e. 5%=0.05:
+
+```{r}
+quantile(airquality$Solar.R,na.rm=T,probs=0.05)
+quantile(airquality$Solar.R,na.rm=T,probs=0.95)
+```
+
+But a better way would be to use the c() function to combine 0.05 and 0.95 and ask for the two percentiles within one line
+
+```{r}
+quantile(airquality$Solar.R,na.rm=T,probs=c(0.05,0.95))
+```
+
+
+### Question 4:
+A task I am sure you remember from school is to solve a quadratic equation using the formula $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
+Write some R code to find the two values of x when $x^2-9x+19=0$ . As a reminder, in the quadratic equation formula from this particular example `a` would be 1; `b` would be -9 and `c` would be 19
+
+### Answer 4
+
+I am going to write this in general terms so that if i wanted to change my code for a different formula later, then i could. However, I didn't explicitly ask you to do that, so if you directly plugged in 1, -9 and 19 into a formula this would still be fine.
+
+
+Brackets are incredibly easy to get wrong on this one. Be extremely careful working out where to place them! My solution below has the minimum number of brackets necessary (due to BODMAS rules), but there is no harm in including extra brackets, just to be safe, if you want to ensure that the order of operations acts as you expect.
+
+Make sure to write `4*a*c` to multiply these together; R would not be able to interpret `4ac`.
+R can interpet `-b` providing b is a number. But writing `-1*b` here is maybe a little more explicit and clearer.
+
+```{r}
+
+a<-1
+b<--9
+c<-19
+
+((-1*b)+sqrt(b^2-4*a*c))/(2*a)
+((-1*b)-sqrt(b^2-4*a*c))/(2*a)
+
+
+```
+
+An extra trick would be to use the `c()` function to replace the $\pm$ operator as this is equivalent to saying "plus one times" or "minus one times", so we can provide a vector of `-1` and `1` to the code we write so that we only have to write one line for the main part of the solution.
+```{r}
+
+a<-1
+b<--9
+c<-19
+
+x<-((-1*b)+c(1,-1)*sqrt(b^2-4*a*c))/(2*a)
+
+x
+
+```
+
+As i'm sure you learnt at school - it's always good practice to plug these numbers back into the equation to see if it makes sense! Saving my object as x in the previous step makes this easy.
+
+```{r}
+
+x^2 -(9*x) +19
+```
+You will see here that you don't actually get a zero for the first number. Unfortunately R will sometimes come up with rounding errors. Remember in scientific notation that "3.552714e-15" is equal to "0.00000000000000355".So i think i am happy to conclude that I got my formula correct!
+
