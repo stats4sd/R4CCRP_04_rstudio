@@ -172,8 +172,8 @@ $(document).ready(function () {
 </div>
 <div id="section-installing-packages" class="section level2">
 <h2>Installing Packages</h2>
-<div id="section-automatically-through-the-prompt-message-install-at-the-top-of-the-file" class="section level3">
-<h3>Automatically through the prompt ‘message ’install’ at the top of the file</h3>
+<div id="section-automatically-through-the-install-prompt-at-the-top-of-the-file" class="section level3">
+<h3>Automatically through the ‘install’ prompt at the top of the file</h3>
 <p>When you do this you will probably see a prompt at the top of the RMD window telling you that the ggplot2 package is used in this script, but has not been installed.</p>
 <p><img src="images/ggplot2%20not%20installed.JPG" width="70%" style="display: block; margin: auto;" /></p>
 <p>You will see this message when your file contains a call to <code>library()</code> but the package inside that function is not installed.</p>
@@ -185,27 +185,27 @@ $(document).ready(function () {
 <blockquote>
 <p>Error in library(ggplot2) : there is no package called ‘ggplot2’</p>
 </blockquote>
-<p>You can then install the package manually by:</p>
+<p>The simplest is then to install the package manually by:</p>
 <ul>
 <li>clicking the <code>Packages</code> tab in the bottom right pane.</li>
 </ul>
-<p><img src="images/packges%20tab.JPG" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/packges%20tab.JPG" width="90%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>clicking the <code>Install</code> button.</li>
 </ul>
-<p><img src="images/install%20button.JPG" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/install%20button.JPG" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>typing the name of the package in the ‘Packages’ field, and press ‘Install’</li>
+<li>typing the name of the package in the ‘Packages’ field, and press <strong>Install</strong></li>
 </ul>
-<p><img src="images/install%20window.JPG" width="80%" style="display: block; margin: auto;" /></p>
-<p>You then wait a little and if, as said just before, you see something which ends with ‘success’ then the package has installed correctly. If instead you see some error, that’s time to look for help!</p>
+<p><img src="images/install%20window.JPG" width="90%" style="display: block; margin: auto;" /></p>
+<p>You then wait a little and if, as said just above, you see something which ends with ‘success’ then the package has installed correctly. If instead you see some error, that’s time to look for help!</p>
 <p>You can watch the video about installing and loading packages here: <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-installing-and-loading-packages" target="_blank">Installing and loading packages</a></p>
 </div>
 </div>
 <div id="section-markdown-files" class="section level2">
 <h2>Markdown Files</h2>
 <p>The video introduction for writing R scripts can be found here: <a href="http://milton-the-cat.rocks/learnr/r/r_getting_started/#section-r-markdown" target="_blank">R Markdown</a></p>
-<p>If you have set the project file, and installed ggplot you should now be able to go through the solutions file and run each of the chunks of code to see the ‘solved’ answers. Make sure you work through sequentially. Loading the packages and the data first, otherwise the later steps will not run. You can see from the first chunk a new function <code>read.csv</code> being used to read the data file in. We will learn more about reading in data in the second part of this module, but for now you can trust that, as long as you set up your project correctly, this line will read in the datafile and store it in R as an object called Pulse. When you run this line you should see it appear in your environment pane.</p>
+<p>If you have set the project file, and installed ggplot2 you should now be able to go through the solutions file and run each of the chunks of code to see the ‘solved’ answers. Make sure you work through sequentially. Loading the packages and the data first, otherwise the later steps will not run. You can see from the first chunk a new function <code>read.csv</code> being used to read the data file in. We will learn more about reading in data in the second part of this module, but for now you can trust that, as long as you set up your project correctly, this line will read in the datafile and store it in R as an object called BeanSurvey. When you run this line you should see it appear in your environment pane.</p>
 <p>And if you click on it within that environment pane, it will open a (non-editable) spreadsheet like interface to view the data.</p>
 <p><img src="images/viewer.JPG" width="70%" style="display: block; margin: auto;" /></p>
 <p>When writing your own markdown files there are a few key points to remember:</p>
@@ -218,7 +218,7 @@ $(document).ready(function () {
 <p>One of the great things about using R markdown files, is how easy it is to export results outside of R. As long as you have followed my key points 1-&gt;4 above, then you should be able to easily convert all of your output and all of your text into a beautiful report, in your choice of format (PDF/Word/HTML) by simply pressing the knit button at the top of the window and selecting the output format. You will always be prompted to save your document, if there are unsaved changes, before any output is made.</p>
 <p><img src="images/knit.JPG" width="40%" style="display: block; margin: auto auto auto 0;" /></p>
 <p>And the first time you do this you will probably be asked to install some libraries within R. Try it now using either of the solutions RMD files that you have downloaded, and should still have open in RStudio.</p>
-<p>There are a lot of ways to improve on the default appearance of your output, but going in detail to this is a little beyond the scope the course. There are some guides in the resources section of the workbook which may help you if you are interested in learning more.</p>
+<p>There are a lot of ways to improve on the default appearance of your output, but going in detail to this is a little beyond the scope of the course. There are some guides in the resources section of the workbook which may help you if you are interested in learning more.</p>
 <p>You may see online people using the .R format script file, instead of the .RMD format markdown file. This is an older format for writing R scripts which does not contain any of the interactive features or the ability to write and format text outside of R commands. When writing your own files we strongly recommend using the RMD format. The RMD file is specific to RStudio - so if you do ever come across a strange person who uses R but not RStudio (they do exist, but are something of an endangered species!) they might prefer to use the .R script file instead of the .RMD markdown file. When you become more of an experienced R user, you may also find .R script files useful when you are writing code to create functions or applications, rather than writing code for working with your own data.</p>
 <p>In the next workbook we will cover importing data into R, and you can then start building your own RMD files from scratch to interact with R!</p>
 </div>
